@@ -1,722 +1,907 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Network - Protect Earth</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --primary: #2e7d32;
-            --secondary: #4caf50;
-            --accent: #8bc34a;
-            --light: #e8f5e9;
-            --dark: #1b5e20;
-            --text: #333333;
-            --white: #ffffff;
-        }
-
-        body {
-            background-color: var(--light);
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        .logo i {
-            font-size: 2rem;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 0;
-            position: relative;
-        }
-
-        nav ul li a:hover {
-            color: var(--accent);
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: var(--white);
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--text);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-img:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1rem;
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .stat-item i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text);
-        }
-
-        .initiatives {
-            background-color: var(--white);
-        }
-
-        .initiatives-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .initiative-card {
-            background-color: var(--light);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .initiative-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .initiative-img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .initiative-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .initiative-card:hover .initiative-img img {
-            transform: scale(1.1);
-        }
-
-        .initiative-content {
-            padding: 1.5rem;
-        }
-
-        .initiative-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .initiative-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .cta {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            text-align: center;
-            padding: 5rem 0;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta .btn {
-            background-color: var(--white);
-            color: var(--primary);
-        }
-
-        .cta .btn:hover {
-            background-color: var(--accent);
-            color: var(--white);
-        }
-
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-
-        .footer-column p {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links li a {
-            color: var(--light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links li a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fire Prevention | Stay Safe, Stay Protected</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+  
+  <!-- Tailwind Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            fire: {
+              red: '#E63946',
+              light: '#FF6B6B',
+              dark: '#C1121F'
+            },
+            safety: {
+              blue: '#1D3557',
+              light: '#457B9D',
+              accent: '#A8DADC'
+            },
+            neutral: {
+              100: '#F8F9FA',
+              200: '#E9ECEF',
+              300: '#DEE2E6',
+              800: '#343A40',
+              900: '#212529'
             }
-            
-            .initiatives-grid {
-                grid-template-columns: repeat(2, 1fr);
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            heading: ['Montserrat', 'sans-serif']
+          },
+          animation: {
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 6s ease-in-out infinite'
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' },
             }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
+          }
         }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
-                flex-direction: column;
-                padding: 1rem 0;
-                text-align: center;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-            }
-            
-            nav ul.active {
-                display: flex;
-            }
-            
-            nav ul li {
-                margin: 0;
-                padding: 0.8rem 0;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Animation for stats counter */
-        .counter {
-            transition: all 0.5s ease;
-        }
-    </style>
+      }
+    }
+  </script>
+  
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .text-shadow-lg {
+        text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      }
+      .bg-gradient-fire {
+        background: linear-gradient(135deg, #E63946 0%, #C1121F 100%);
+      }
+      .bg-gradient-safety {
+        background: linear-gradient(135deg, #1D3557 0%, #457B9D 100%);
+      }
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    }
+  </style>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
 </head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-seedling"></i>
-                <span>Green Network</span>
+
+<body class="font-sans bg-neutral-100 text-neutral-800 overflow-x-hidden">
+  <!-- Navigation -->
+  <header id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4">
+        <a href="#" class="flex items-center space-x-2">
+          <i class="fa fa-fire-extinguisher text-fire-red text-2xl"></i>
+          <span class="text-[clamp(1.2rem,2vw,1.5rem)] font-heading font-bold text-white text-shadow-lg">FireSafe</span>
+        </a>
+        
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex space-x-8">
+          <a href="#home" class="text-white hover:text-safety-accent transition-colors font-medium">Home</a>
+          <a href="#stats" class="text-white hover:text-safety-accent transition-colors font-medium">Statistics</a>
+          <a href="#prevention" class="text-white hover:text-safety-accent transition-colors font-medium">Prevention</a>
+          <a href="#response" class="text-white hover:text-safety-accent transition-colors font-medium">Emergency</a>
+          <a href="#resources" class="text-white hover:text-safety-accent transition-colors font-medium">Resources</a>
+        </nav>
+        
+        <!-- Emergency Button -->
+        <a href="#emergency" class="hidden md:inline-block bg-fire-red hover:bg-fire-dark text-white font-semibold py-2 px-4 rounded-lg transition-all transform hover:scale-105 shadow-lg">
+          Emergency <i class="fa fa-phone ml-1"></i>
+        </a>
+        
+        <!-- Mobile Menu Button -->
+        <button id="menu-toggle" class="md:hidden text-white text-2xl">
+          <i class="fa fa-bars"></i>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Navigation Menu -->
+    <div id="mobile-menu" class="md:hidden bg-safety-blue/95 backdrop-blur-md hidden">
+      <div class="container mx-auto px-4 py-3 space-y-3">
+        <a href="#home" class="block text-white hover:text-safety-accent py-2 px-4 rounded transition-colors">Home</a>
+        <a href="#stats" class="block text-white hover:text-safety-accent py-2 px-4 rounded transition-colors">Statistics</a>
+        <a href="#prevention" class="block text-white hover:text-safety-accent py-2 px-4 rounded transition-colors">Prevention</a>
+        <a href="#response" class="block text-white hover:text-safety-accent py-2 px-4 rounded transition-colors">Emergency</a>
+        <a href="#resources" class="block text-white hover:text-safety-accent py-2 px-4 rounded transition-colors">Resources</a>
+        <a href="#emergency" class="block bg-fire-red hover:bg-fire-dark text-white font-semibold py-2 px-4 rounded-lg text-center">
+          Emergency <i class="fa fa-phone ml-1"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src="https://picsum.photos/id/1039/1920/1080" alt="Fire safety background" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-safety-blue/70 backdrop-blur-sm"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-heading font-bold text-white leading-tight text-shadow-lg mb-6 animate-float">
+        Prevent Fires, <span class="text-fire-light">Save Lives</span>
+      </h1>
+      <p class="text-[clamp(1rem,2vw,1.25rem)] text-white/90 max-w-3xl mx-auto mb-10 text-shadow">
+        Fire safety is everyone's responsibility. Learn how to protect your home, workplace, and community from the devastating effects of fire.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="#prevention" class="bg-fire-red hover:bg-fire-dark text-white font-semibold py-3 px-8 rounded-lg transition-all transform hover:scale-105 shadow-xl">
+          Learn Prevention Tips
+        </a>
+        <a href="#resources" class="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white font-semibold py-3 px-8 rounded-lg transition-all border border-white/40">
+          Download Resources
+        </a>
+      </div>
+    </div>
+    
+    <div class="absolute bottom-10 left-0 right-0 flex justify-center animate-bounce">
+      <a href="#stats" class="text-white text-3xl opacity-80 hover:opacity-100 transition-opacity">
+        <i class="fa fa-chevron-down"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- Statistics Section -->
+  <section id="stats" class="py-20 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-heading font-bold text-safety-blue mb-4">Fire Statistics</h2>
+        <p class="text-neutral-600 max-w-2xl mx-auto">Understanding the scope of the problem helps us recognize the importance of fire prevention and preparedness.</p>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div class="bg-neutral-100 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow transform hover:-translate-y-1">
+            <div class="flex items-center mb-4">
+              <div class="bg-fire-red/10 p-3 rounded-full mr-4">
+                <i class="fa fa-home text-fire-red text-xl"></i>
+              </div>
+              <h3 class="font-heading font-semibold text-lg text-safety-blue">Home Fires</h3>
             </div>
-            <nav>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#initiatives">Initiatives</a></li>
-                    <li><a href="#get-involved">Get Involved</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+            <p class="text-3xl font-bold text-fire-red mb-2">76%</p>
+            <p class="text-neutral-600">Of all fire-related deaths occur in homes</p>
+          </div>
+          
+          <div class="bg-neutral-100 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow transform hover:-translate-y-1">
+            <div class="flex items-center mb-4">
+              <div class="bg-safety-light/10 p-3 rounded-full mr-4">
+                <i class="fa fa-clock-o text-safety-light text-xl"></i>
+              </div>
+              <h3 class="font-heading font-semibold text-lg text-safety-blue">Response Time</h3>
+            </div>
+            <p class="text-3xl font-bold text-safety-light mb-2">3-5</p>
+            <p class="text-neutral-600">Minutes to escape a burning home safely</p>
+          </div>
+          
+          <div class="bg-neutral-100 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow transform hover:-translate-y-1">
+            <div class="flex items-center mb-4">
+              <div class="bg-fire-light/10 p-3 rounded-full mr-4">
+                <i class="fa fa-burn text-fire-light text-xl"></i>
+              </div>
+              <h3 class="font-heading font-semibold text-lg text-safety-blue">Cooking Fires</h3>
+            </div>
+            <p class="text-3xl font-bold text-fire-light mb-2">49%</p>
+            <p class="text-neutral-600">Leading cause of home structure fires</p>
+          </div>
+          
+          <div class="bg-neutral-100 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow transform hover:-translate-y-1">
+            <div class="flex items-center mb-4">
+              <div class="bg-safety-blue/10 p-3 rounded-full mr-4">
+                <i class="fa fa-bell text-safety-blue text-xl"></i>
+              </div>
+              <h3 class="font-heading font-semibold text-lg text-safety-blue">Smoke Alarms</h3>
+            </div>
+            <p class="text-3xl font-bold text-safety-blue mb-2">50%</p>
+            <p class="text-neutral-600">Reduction in fire deaths with working alarms</p>
+          </div>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Protect Our Planet, Preserve Our Future</h1>
-            <p>Join the global movement to create a sustainable world through conservation, education, and community action.</p>
-            <a href="#get-involved" class="btn">Join Our Network</a>
+        
+        <!-- Chart -->
+        <div class="bg-neutral-100 rounded-xl p-6 shadow-md">
+          <h3 class="font-heading font-semibold text-lg text-safety-blue mb-6 text-center">Common Causes of Residential Fires</h3>
+          <div class="h-80">
+            <canvas id="fireCausesChart"></canvas>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Green Network</h2>
-                <p>We are a global community dedicated to environmental protection and sustainable development.</p>
+  <!-- Prevention Tips Section -->
+  <section id="prevention" class="py-20 bg-neutral-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-heading font-bold text-safety-blue mb-4">Fire Prevention Tips</h2>
+        <p class="text-neutral-600 max-w-2xl mx-auto">Simple precautions can significantly reduce the risk of fire in your home and workplace.</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Home Prevention -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all">
+          <div class="bg-fire-red/10 p-6">
+            <div class="w-14 h-14 bg-fire-red/20 rounded-full flex items-center justify-center mb-4">
+              <i class="fa fa-home text-fire-red text-2xl"></i>
             </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team planting trees">
-                </div>
-                <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>Green Network is committed to creating a sustainable future by protecting natural ecosystems, promoting renewable energy, and empowering communities to take environmental action.</p>
-                    <p>Founded in 2010, we've grown from a small grassroots organization to an international network with over 50,000 members across 120 countries.</p>
-                    <p>Our approach combines scientific research, community engagement, and policy advocacy to address the most pressing environmental challenges of our time.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-            </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <i class="fas fa-tree"></i>
-                    <h3 class="counter" data-target="2500000">0</h3>
-                    <p>Trees Planted</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3 class="counter" data-target="50000">0</h3>
-                    <p>Active Members</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3 class="counter" data-target="120">0</h3>
-                    <p>Countries Reached</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-recycle"></i>
-                    <h3 class="counter" data-target="1500">0</h3>
-                    <p>Cleanup Projects</p>
-                </div>
-            </div>
+            <h3 class="font-heading font-bold text-xl text-safety-blue">Home Safety</h3>
+          </div>
+          <div class="p-6">
+            <ul class="space-y-4">
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-safety-light mt-1 mr-3"></i>
+                <span>Install smoke alarms on every level and test monthly</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-safety-light mt-1 mr-3"></i>
+                <span>Keep flammable materials away from heat sources</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-safety-light mt-1 mr-3"></i>
+                <span>Never leave cooking unattended, especially with oil</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-safety-light mt-1 mr-3"></i>
+                <span>Maintain electrical systems and avoid overloading outlets</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-safety-light mt-1 mr-3"></i>
+                <span>Create and practice a home escape plan with your family</span>
+              </li>
+            </ul>
+          </div>
         </div>
-    </section>
-
-    <!-- Initiatives Section -->
-    <section class="initiatives" id="initiatives">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Initiatives</h2>
-                <p>Discover the key programs and projects we're implementing to protect our planet.</p>
+        
+        <!-- Workplace Prevention -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all">
+          <div class="bg-safety-light/10 p-6">
+            <div class="w-14 h-14 bg-safety-light/20 rounded-full flex items-center justify-center mb-4">
+              <i class="fa fa-briefcase text-safety-light text-2xl"></i>
             </div>
-            <div class="initiatives-grid">
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://dialogue.earth/content/uploads/2021/04/lessons-from-the-rush-to-reforest-china-dialogue-2400x1599.jpg" alt="Reforestation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Global Reforestation</h3>
-                        <p>Planting millions of trees worldwide to restore ecosystems, combat climate change, and protect biodiversity.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Ocean Conservation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Ocean Conservation</h3>
-                        <p>Protecting marine ecosystems, reducing plastic pollution, and promoting sustainable fishing practices.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Renewable Energy">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Renewable Energy</h3>
-                        <p>Promoting solar, wind, and other clean energy sources to reduce dependence on fossil fuels.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-            </div>
+            <h3 class="font-heading font-bold text-xl text-safety-blue">Workplace Safety</h3>
+          </div>
+          <div class="p-6">
+            <ul class="space-y-4">
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-safety-light mt-1 mr-3"></i>
+                <span>Follow proper storage procedures for chemicals and flammables</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-safety-light mt-1 mr-3"></i>
+                <span>Keep fire exits and extinguishers accessible at all times</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-safety-light mt-1 mr-3"></i>
+                <span>Participate in fire safety training and drills</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-safety-light mt-1 mr-3"></i>
+                <span>Report potential fire hazards immediately to management</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-safety-light mt-1 mr-3"></i>
+                <span>Ensure proper maintenance of equipment and machinery</span>
+              </li>
+            </ul>
+          </div>
         </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta" id="get-involved">
-        <div class="container">
-            <h2>Join Our Global Movement</h2>
-            <p>Together, we can create a sustainable future for generations to come. Every action counts, no matter how small.</p>
-            <a href="#" class="btn">Become a Member</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Green Network</h3>
-                    <p>We are dedicated to protecting our planet through collaborative action, education, and sustainable solutions.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#initiatives">Initiatives</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Our Programs</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Reforestation</a></li>
-                        <li><a href="#">Ocean Cleanup</a></li>
-                        <li><a href="#">Wildlife Protection</a></li>
-                        <li><a href="#">Climate Education</a></li>
-                        <li><a href="#">Sustainable Agriculture</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Copper Creek Drive, New York</p>
-                    <p><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
-                    <p><i class="fas fa-envelope"></i> support@greennetwork.org</p>
-                </div>
+        
+        <!-- Outdoor Prevention -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all">
+          <div class="bg-safety-blue/10 p-6">
+            <div class="w-14 h-14 bg-safety-blue/20 rounded-full flex items-center justify-center mb-4">
+              <i class="fa fa-tree text-safety-blue text-2xl"></i>
             </div>
-            <div class="copyright">
-                <p>&copy; 2025 Green Network. All rights reserved.</p>
-            </div>
+            <h3 class="font-heading font-bold text-xl text-safety-blue">Outdoor Safety</h3>
+          </div>
+          <div class="p-6">
+            <ul class="space-y-4">
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-safety-light mt-1 mr-3"></i>
+                <span>Check local fire restrictions before outdoor burning</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-safety-light mt-1 mr-3"></i>
+                <span>Keep campfires small and attended at all times</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-safety-light mt-1 mr-3"></i>
+                <span>Extinguish fires completely with water, not just dirt</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-safety-light mt-1 mr-3"></i>
+                <span>Dispose of cigarettes properly, never throw from vehicles</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-safety-light mt-1 mr-3"></i>
+                <span>Maintain safe distance between structures and vegetation</span>
+              </li>
+            </ul>
+          </div>
         </div>
-    </footer>
+      </div>
+      
+      <!-- Expandable Tips -->
+      <div class="mt-16 max-w-4xl mx-auto">
+        <h3 class="font-heading font-bold text-xl text-safety-blue mb-6 text-center">Additional Safety Guidelines</h3>
+        
+        <div class="space-y-4">
+          <!-- Smoke Alarm Tips -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden">
+            <button class="w-full flex justify-between items-center p-6 text-left focus:outline-none" onclick="toggleAccordion(this)">
+              <span class="font-semibold text-safety-blue">Smoke Alarm Maintenance</span>
+              <i class="fa fa-chevron-down text-safety-light transition-transform duration-300"></i>
+            </button>
+            <div class="hidden px-6 pb-6">
+              <p class="text-neutral-600 mb-4">Proper maintenance ensures your smoke alarms work when you need them most:</p>
+              <ul class="space-y-2 text-neutral-600">
+                <li class="flex items-start">
+                  <i class="fa fa-angle-right text-fire-red mt-1 mr-2"></i>
+                  <span>Test smoke alarms monthly by pressing the test button</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-angle-right text-fire-red mt-1 mr-2"></i>
+                  <span>Replace batteries at least once a year, or when the alarm chirps</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-angle-right text-fire-red mt-1 mr-2"></i>
+                  <span>Replace smoke alarms every 10 years, even if they seem to work</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-angle-right text-fire-red mt-1 mr-2"></i>
+                  <span>Keep alarms clean and free of dust and debris</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Escape Plan Tips -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden">
+            <button class="w-full flex justify-between items-center p-6 text-left focus:outline-none" onclick="toggleAccordion(this)">
+              <span class="font-semibold text-safety-blue">Creating a Home Escape Plan</span>
+              <i class="fa fa-chevron-down text-safety-light transition-transform duration-300"></i>
+            </button>
+            <div class="hidden px-6 pb-6">
+              <p class="text-neutral-600 mb-4">A well-planned escape route can mean the difference between life and death:</p>
+              <ul class="space-y-2 text-neutral-600">
+                <li class="flex items-start">
+                  <i class="fa fa-angle-right text-fire-red mt-1 mr-2"></i>
+                  <span>Map all possible exits from each room in your home</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-angle-right text-fire-red mt-1 mr-2"></i>
+                  <span>Identify a safe meeting place outside your home</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-angle-right text-fire-red mt-1 mr-2"></i>
+                  <span>Practice your escape plan at least twice a year</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-angle-right text-fire-red mt-1 mr-2"></i>
+                  <span>Ensure windows aren't stuck and screens can be removed quickly</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-angle-right text-fire-red mt-1 mr-2"></i>
+                  <span>Teach children how to escape on their own in case you're not with them</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Fire Extinguisher Tips -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden">
+            <button class="w-full flex justify-between items-center p-6 text-left focus:outline-none" onclick="toggleAccordion(this)">
+              <span class="font-semibold text-safety-blue">Using a Fire Extinguisher</span>
+              <i class="fa fa-chevron-down text-safety-light transition-transform duration-300"></i>
+            </button>
+            <div class="hidden px-6 pb-6">
+              <p class="text-neutral-600 mb-4">Remember the PASS method when using a fire extinguisher:</p>
+              <ul class="space-y-2 text-neutral-600">
+                <li class="flex items-start">
+                  <i class="fa fa-angle-right text-fire-red mt-1 mr-2"></i>
+                  <span><strong>P</strong>ull the pin to break the tamper seal</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-angle-right text-fire-red mt-1 mr-2"></i>
+                  <span><strong>A</strong>im low, pointing the extinguisher nozzle at the base of the fire</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-angle-right text-fire-red mt-1 mr-2"></i>
+                  <span><strong>S</strong>queeze the handle slowly and evenly</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-angle-right text-fire-red mt-1 mr-2"></i>
+                  <span><strong>S</strong>weep the nozzle from side to side at the base of the fire</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-angle-right text-fire-red mt-1 mr-2"></i>
+                  <span>Only attempt to extinguish small fires - if it grows, evacuate immediately</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
-        });
+  <!-- Emergency Response Section -->
+  <section id="response" class="py-20 bg-gradient-safety text-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-heading font-bold mb-4">Emergency Response</h2>
+        <p class="text-white/80 max-w-2xl mx-auto">Knowing how to respond quickly and correctly during a fire emergency can save lives.</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Step 1 -->
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8 hover:bg-white/15 transition-colors transform hover:-translate-y-2">
+          <div class="w-16 h-16 bg-fire-red rounded-full flex items-center justify-center mb-6 mx-auto">
+            <span class="font-heading font-bold text-2xl">1</span>
+          </div>
+          <h3 class="font-heading font-bold text-xl mb-4 text-center">React Immediately</h3>
+          <ul class="space-y-3 text-white/90">
+            <li class="flex items-start">
+              <i class="fa fa-exclamation-circle text-fire-light mt-1 mr-3"></i>
+              <span>Alert others in the building</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-exclamation-circle text-fire-light mt-1 mr-3"></i>
+              <span>Call emergency services (911)</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-exclamation-circle text-fire-light mt-1 mr-3"></i>
+              <span>Evacuate or prepare to evacuate</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-exclamation-circle text-fire-light mt-1 mr-3"></i>
+              <span>Only attempt to extinguish small fires</span>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Step 2 -->
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8 hover:bg-white/15 transition-colors transform hover:-translate-y-2">
+          <div class="w-16 h-16 bg-fire-red rounded-full flex items-center justify-center mb-6 mx-auto">
+            <span class="font-heading font-bold text-2xl">2</span>
+          </div>
+          <h3 class="font-heading font-bold text-xl mb-4 text-center">Evacuation Procedures</h3>
+          <ul class="space-y-3 text-white/90">
+            <li class="flex items-start">
+              <i class="fa fa-arrow-right text-safety-accent mt-1 mr-3"></i>
+              <span>Stay low to avoid smoke inhalation</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-arrow-right text-safety-accent mt-1 mr-3"></i>
+              <span>Cover mouth and nose with a damp cloth</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-arrow-right text-safety-accent mt-1 mr-3"></i>
+              <span>Feel doors before opening - if hot, use alternate exit</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-arrow-right text-safety-accent mt-1 mr-3"></i>
+              <span>Close doors behind you to slow fire spread</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-arrow-right text-safety-accent mt-1 mr-3"></i>
+              <span>Proceed to designated meeting place</span>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Step 3 -->
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8 hover:bg-white/15 transition-colors transform hover:-translate-y-2">
+          <div class="w-16 h-16 bg-fire-red rounded-full flex items-center justify-center mb-6 mx-auto">
+            <span class="font-heading font-bold text-2xl">3</span>
+          </div>
+          <h3 class="font-heading font-bold text-xl mb-4 text-center">After Evacuation</h3>
+          <ul class="space-y-3 text-white/90">
+            <li class="flex items-start">
+              <i class="fa fa-check-square-o text-safety-accent mt-1 mr-3"></i>
+              <span>Do not re-enter the building</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check-square-o text-safety-accent mt-1 mr-3"></i>
+              <span>Account for all family members/colleagues</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check-square-o text-safety-accent mt-1 mr-3"></i>
+              <span>Inform emergency responders of any missing persons</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check-square-o text-safety-accent mt-1 mr-3"></i>
+              <span>Stay at a safe distance from the building</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-check-square-o text-safety-accent mt-1 mr-3"></i>
+              <span>Follow instructions from emergency personnel</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Emergency Contact -->
+      <div id="emergency" class="mt-16 bg-fire-red/20 backdrop-blur-sm rounded-xl p-8 max-w-3xl mx-auto border border-fire-red/30">
+        <div class="flex flex-col md:flex-row items-center justify-between">
+          <div class="mb-6 md:mb-0">
+            <h3 class="font-heading font-bold text-xl mb-2">In Case of Emergency</h3>
+            <p class="text-white/80">Call emergency services immediately</p>
+          </div>
+          <div class="flex items-center">
+            <i class="fa fa-phone text-4xl text-fire-light mr-4"></i>
+            <span class="text-4xl font-heading font-bold">911</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200; // The lower the slower
-            
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                
-                const inc = target / speed;
-                
-                if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 1);
-                } else {
-                    counter.innerText = target;
-                }
-            });
+  <!-- Resources Section -->
+  <section id="resources" class="py-20 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-heading font-bold text-safety-blue mb-4">Fire Safety Resources</h2>
+        <p class="text-neutral-600 max-w-2xl mx-auto">Download helpful guides, checklists, and materials to enhance your fire safety knowledge.</p>
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Resource 1 -->
+        <div class="bg-neutral-50 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all group">
+          <div class="h-48 bg-safety-blue/10 flex items-center justify-center">
+            <i class="fa fa-file-pdf-o text-6xl text-safety-blue group-hover:text-fire-red transition-colors"></i>
+          </div>
+          <div class="p-6">
+            <h3 class="font-heading font-bold text-lg text-safety-blue mb-2">Home Fire Safety Checklist</h3>
+            <p class="text-neutral-600 mb-4">A comprehensive checklist to assess and improve fire safety in your home.</p>
+            <a href="#" class="inline-flex items-center text-fire-red font-medium hover:text-fire-dark transition-colors">
+              Download PDF <i class="fa fa-download ml-2"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Resource 2 -->
+        <div class="bg-neutral-50 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all group">
+          <div class="h-48 bg-safety-blue/10 flex items-center justify-center">
+            <i class="fa fa-file-text-o text-6xl text-safety-blue group-hover:text-fire-red transition-colors"></i>
+          </div>
+          <div class="p-6">
+            <h3 class="font-heading font-bold text-lg text-safety-blue mb-2">Fire Escape Plan Template</h3>
+            <p class="text-neutral-600 mb-4">Create a customized escape plan for your home with this printable template.</p>
+            <a href="#" class="inline-flex items-center text-fire-red font-medium hover:text-fire-dark transition-colors">
+              Download PDF <i class="fa fa-download ml-2"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Resource 3 -->
+        <div class="bg-neutral-50 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all group">
+          <div class="h-48 bg-safety-blue/10 flex items-center justify-center">
+            <i class="fa fa-video-camera text-6xl text-safety-blue group-hover:text-fire-red transition-colors"></i>
+          </div>
+          <div class="p-6">
+            <h3 class="font-heading font-bold text-lg text-safety-blue mb-2">Fire Safety Video Series</h3>
+            <p class="text-neutral-600 mb-4">Educational videos covering fire prevention, detection, and response.</p>
+            <a href="#" class="inline-flex items-center text-fire-red font-medium hover:text-fire-dark transition-colors">
+              Watch Videos <i class="fa fa-play-circle ml-2"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Resource 4 -->
+        <div class="bg-neutral-50 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all group">
+          <div class="h-48 bg-safety-blue/10 flex items-center justify-center">
+            <i class="fa fa-book text-6xl text-safety-blue group-hover:text-fire-red transition-colors"></i>
+          </div>
+          <div class="p-6">
+            <h3 class="font-heading font-bold text-lg text-safety-blue mb-2">Workplace Fire Safety Guide</h3>
+            <p class="text-neutral-600 mb-4">Essential information for employers and employees on workplace fire safety.</p>
+            <a href="#" class="inline-flex items-center text-fire-red font-medium hover:text-fire-dark transition-colors">
+              Download PDF <i class="fa fa-download ml-2"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Resource 5 -->
+        <div class="bg-neutral-50 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all group">
+          <div class="h-48 bg-safety-blue/10 flex items-center justify-center">
+            <i class="fa fa-child text-6xl text-safety-blue group-hover:text-fire-red transition-colors"></i>
+          </div>
+          <div class="p-6">
+            <h3 class="font-heading font-bold text-lg text-safety-blue mb-2">Fire Safety for Kids</h3>
+            <p class="text-neutral-600 mb-4">Age-appropriate materials to teach children about fire safety.</p>
+            <a href="#" class="inline-flex items-center text-fire-red font-medium hover:text-fire-dark transition-colors">
+              Explore Resources <i class="fa fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Resource 6 -->
+        <div class="bg-neutral-50 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all group">
+          <div class="h-48 bg-safety-blue/10 flex items-center justify-center">
+            <i class="fa fa-mobile text-6xl text-safety-blue group-hover:text-fire-red transition-colors"></i>
+          </div>
+          <div class="p-6">
+            <h3 class="font-heading font-bold text-lg text-safety-blue mb-2">Emergency App Recommendations</h3>
+            <p class="text-neutral-600 mb-4">Mobile applications that can help during fire emergencies.</p>
+            <a href="#" class="inline-flex items-center text-fire-red font-medium hover:text-fire-dark transition-colors">
+              View Apps <i class="fa fa-external-link ml-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Newsletter Signup -->
+      <div class="mt-16 bg-gradient-fire rounded-xl p-8 md:p-12 shadow-xl">
+        <div class="max-w-2xl mx-auto text-center">
+          <h3 class="font-heading font-bold text-2xl text-white mb-4">Stay Updated on Fire Safety</h3>
+          <p class="text-white/80 mb-8">Subscribe to our newsletter for the latest fire safety tips, updates, and resources.</p>
+          <form class="flex flex-col sm:flex-row gap-4">
+            <input type="email" placeholder="Enter your email address" class="flex-grow px-4 py-3 rounded-lg focus:outline-none text-neutral-800">
+            <button type="submit" class="bg-safety-blue hover:bg-safety-blue/90 text-white font-semibold py-3 px-6 rounded-lg transition-colors whitespace-nowrap">
+              Subscribe Now
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-safety-blue text-white pt-16 pb-8">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <div>
+          <div class="flex items-center space-x-2 mb-6">
+            <i class="fa fa-fire-extinguisher text-fire-light text-2xl"></i>
+            <span class="text-xl font-heading font-bold">FireSafe</span>
+          </div>
+          <p class="text-white/70 mb-6">Dedicated to promoting fire safety awareness and preventing fire-related tragedies in our communities.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-white/70 hover:text-fire-light transition-colors">
+              <i class="fa fa-facebook"></i>
+            </a>
+            <a href="#" class="text-white/70 hover:text-fire-light transition-colors">
+              <i class="fa fa-twitter"></i>
+            </a>
+            <a href="#" class="text-white/70 hover:text-fire-light transition-colors">
+              <i class="fa fa-instagram"></i>
+            </a>
+            <a href="#" class="text-white/70 hover:text-fire-light transition-colors">
+              <i class="fa fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="font-heading font-semibold text-lg mb-6">Quick Links</h4>
+          <ul class="space-y-3">
+            <li><a href="#home" class="text-white/70 hover:text-fire-light transition-colors">Home</a></li>
+            <li><a href="#stats" class="text-white/70 hover:text-fire-light transition-colors">Fire Statistics</a></li>
+            <li><a href="#prevention" class="text-white/70 hover:text-fire-light transition-colors">Prevention Tips</a></li>
+            <li><a href="#response" class="text-white/70 hover:text-fire-light transition-colors">Emergency Response</a></li>
+            <li><a href="#resources" class="text-white/70 hover:text-fire-light transition-colors">Resources</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="font-heading font-semibold text-lg mb-6">Useful Resources</h4>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-white/70 hover:text-fire-light transition-colors">Fire Departments</a></li>
+            <li><a href="#" class="text-white/70 hover:text-fire-light transition-colors">Safety Regulations</a></li>
+            <li><a href="#" class="text-white/70 hover:text-fire-light transition-colors">Training Programs</a></li>
+            <li><a href="#" class="text-white/70 hover:text-fire-light transition-colors">Public Education</a></li>
+            <li><a href="#" class="text-white/70 hover:text-fire-light transition-colors">Report a Hazard</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="font-heading font-semibold text-lg mb-6">Contact Information</h4>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <i class="fa fa-map-marker text-fire-light mt-1 mr-3"></i>
+              <span class="text-white/70">123 Safety Street, Prevention City, 12345</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-phone text-fire-light mt-1 mr-3"></i>
+              <span class="text-white/70">(555) 123-4567</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-envelope text-fire-light mt-1 mr-3"></i>
+              <span class="text-white/70">info@firesafe.org</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-clock-o text-fire-light mt-1 mr-3"></i>
+              <span class="text-white/70">Monday - Friday: 9 AM - 5 PM</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-white/10 pt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <p class="text-white/50 text-sm mb-4 md:mb-0">© 2025 FireSafe. All rights reserved. | Fire Prevention Awareness</p>
+          <div class="flex space-x-6">
+            <a href="#" class="text-white/50 hover:text-white text-sm transition-colors">Privacy Policy</a>
+            <a href="#" class="text-white/50 hover:text-white text-sm transition-colors">Terms of Service</a>
+            <a href="#" class="text-white/50 hover:text-white text-sm transition-colors">Accessibility</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="fixed bottom-8 right-8 bg-fire-red hover:bg-fire-dark text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300 z-50">
+    <i class="fa fa-chevron-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script>
+    // Navbar Scroll Effect
+    const navbar = document.getElementById('navbar');
+    const backToTop = document.getElementById('back-to-top');
+    
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 100) {
+        navbar.classList.add('bg-safety-blue/95', 'backdrop-blur-md', 'shadow-md');
+        navbar.classList.remove('bg-transparent');
+        
+        backToTop.classList.remove('opacity-0', 'invisible');
+        backToTop.classList.add('opacity-100', 'visible');
+      } else {
+        navbar.classList.remove('bg-safety-blue/95', 'backdrop-blur-md', 'shadow-md');
+        navbar.classList.add('bg-transparent');
+        
+        backToTop.classList.add('opacity-0', 'invisible');
+        backToTop.classList.remove('opacity-100', 'visible');
+      }
+    });
+    
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    menuToggle.addEventListener('click', function() {
+      mobileMenu.classList.toggle('hidden');
+      const isOpen = !mobileMenu.classList.contains('hidden');
+      menuToggle.innerHTML = isOpen ? '<i class="fa fa-times"></i>' : '<i class="fa fa-bars"></i>';
+    });
+    
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+      link.addEventListener('click', function() {
+        mobileMenu.classList.add('hidden');
+        menuToggle.innerHTML = '<i class="fa fa-bars"></i>';
+      });
+    });
+    
+    // Smooth Scroll for Navigation Links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
         }
-
-        // Initialize counters when page loads
-        window.addEventListener('load', animateCounters);
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    document.querySelector('nav ul').classList.remove('active');
+      });
+    });
+    
+    // Back to Top Button
+    backToTop.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // Accordion Toggle
+    function toggleAccordion(button) {
+      const content = button.nextElementSibling;
+      const icon = button.querySelector('i');
+      
+      content.classList.toggle('hidden');
+      icon.classList.toggle('rotate-180');
+    }
+    
+    // Fire Causes Chart
+    window.addEventListener('load', function() {
+      const ctx = document.getElementById('fireCausesChart').getContext('2d');
+      
+      new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Cooking Equipment', 'Heating Equipment', 'Electrical Distribution', 'Intentional', 'Smoking Materials', 'Other'],
+          datasets: [{
+            data: [49, 16, 12, 8, 5, 10],
+            backgroundColor: [
+              '#E63946',
+              '#457B9D',
+              '#1D3557',
+              '#FFB703',
+              '#FB8500',
+              '#8ECAE6'
+            ],
+            borderWidth: 0,
+            hoverOffset: 10
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: {
+                padding: 20,
+                font: {
+                  size: 12
                 }
-            });
-        });
-    </script>
+              }
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.label + ': ' + context.raw + '%';
+                }
+              }
+            }
+          },
+          cutout: '60%'
+        }
+      });
+    });
+    
+    // Animate elements on scroll
+    const animateOnScroll = function() {
+      const elements = document.querySelectorAll('.grid > div, .bg-gradient-fire');
+      
+      elements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.2;
+        
+        if (elementPosition < screenPosition) {
+          element.classList.add('animate-fade-in');
+          element.style.opacity = '1';
+          element.style.transform = 'translateY(0)';
+        }
+      });
+    };
+    
+    // Add initial styles for animation
+    document.querySelectorAll('.grid > div, .bg-gradient-fire').forEach(element => {
+      element.style.opacity = '0';
+      element.style.transform = 'translateY(20px)';
+      element.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+    });
+    
+    // Run on load and scroll
+    window.addEventListener('load', animateOnScroll);
+    window.addEventListener('scroll', animateOnScroll);
+  </script>
 </body>
-
 </html>
